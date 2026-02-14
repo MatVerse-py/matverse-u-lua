@@ -1,0 +1,36 @@
+# MatVerse LUA - .gitignore
+
+# Dados sensíveis
+governance/registry.json
+storage/ledger/*.log
+*.db
+*.sqlite
+
+# Chaves PQC
+*.pqc.key
+*.pqc.pub
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+venv/
+*.egg-info/
+
+# Embeddings e modelos
+*.bin
+*.pt
+*.onnx
+models/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
