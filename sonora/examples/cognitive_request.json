@@ -1,0 +1,39 @@
+{
+  "request_id": "oss-cross-001",
+  "mode": "cross",
+  "scope": "internal_cognitive_training",
+  "source": {
+    "work_title": "Material-base abstrato",
+    "material_type": "abstract",
+    "context": "Gerar estímulos contrastantes para decisão e reconhecimento de padrões."
+  },
+  "architectures": [
+    {
+      "id": "minimal",
+      "label": "Mínima tensão",
+      "preset": "minimalist_tension"
+    },
+    {
+      "id": "rhythmic",
+      "label": "Confronto rítmico",
+      "preset": "rhythmic_confrontation"
+    },
+    {
+      "id": "narrative",
+      "label": "Narrativa falada",
+      "preset": "spoken_narrative"
+    }
+  ],
+  "controls": {
+    "possibility_profile": "expansive",
+    "variation_count": 5,
+    "output_selection_count": 2,
+    "cognitive_targets": [
+      "pattern_recognition",
+      "decision_quality",
+      "metacognition"
+    ],
+    "transfer_task": "comparar duas soluções técnicas e justificar a decisão com base em invariantes e contrastes",
+    "seed": 20260729
+  }
+}
