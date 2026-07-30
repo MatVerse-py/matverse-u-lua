@@ -1,0 +1,50 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "sonora-open-tools"
+version = "3.0.0"
+description = "Open-source audio and cognitive-crossing toolkit for SONORA/Matverse"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "MatVerse"}]
+dependencies = []
+
+[project.optional-dependencies]
+analysis = [
+  "numpy>=1.24",
+  "soundfile>=0.12",
+  "librosa>=0.10.2"
+]
+semantic = [
+  "torch>=2.1",
+  "transformers>=4.38,<5",
+  "accelerate>=0.28",
+  "numpy>=1.24",
+  "soundfile>=0.12",
+  "librosa>=0.10.2"
+]
+separation = ["demucs>=4.0"]
+generation = [
+  "torch>=2.1",
+  "transformers>=4.38,<5",
+  "scipy>=1.10"
+]
+api = [
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "pydantic>=2.7"
+]
+dev = ["pytest>=8.0", "jsonschema>=4.22"]
+
+[project.scripts]
+sonora = "sonora_open_tools.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sonora_open_tools"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
