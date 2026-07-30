@@ -1,0 +1,39 @@
+name: sonora-ci
+
+on:
+  push:
+    paths:
+      - "sonora/**"
+      - ".github/workflows/sonora-ci.yml"
+  pull_request:
+    paths:
+      - "sonora/**"
+      - ".github/workflows/sonora-ci.yml"
+
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install core
+        run: python -m pip install -e ./sonora
+      - name: Compile
+        run: python -m compileall -q sonora/src
+      - name: Unit tests
+        run: python -m unittest discover -s sonora/tests -v
+      - name: Doctor
+        run: sonora doctor --pretty
+      - name: End-to-end session
+        run: sonora session sonora/examples/session_core.json --pretty
+      - name: Forbidden-token scan
+        run: |
+          if grep -RIn --exclude-dir=.git -e 'neysec' sonora; then
+            exit 1
+          fi
